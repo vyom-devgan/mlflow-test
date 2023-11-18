@@ -14,6 +14,9 @@ import mlflow.sklearn # https://mlflow.org/docs/latest/python_api/index.html
 from mlflow.models import infer_signature
 #mlflow.start_run()
 
+remote_server_uri = "https://dagshub.com/vyom-devgan/mlflow-test.mlflow"
+mlflow.set_tracking_uri(remote_server_uri)
+
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 
@@ -71,8 +74,6 @@ if __name__ == "__main__":
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
 
-        remote_server_uri = "https://dagshub.com/vyom-devgan/mlflow-test.mlflow"
-        mlflow.set_tracking_uri(remote_server_uri)
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
